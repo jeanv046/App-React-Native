@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useState} from "react";
 import { ScrollView, StyleSheet, TextInput, TouchableOpacity, Text, View, Image } from "react-native";
+import {getCities, saveData, createUser} from "../funtion"
 
 
 const Register = () => {
-    const [text, onChangeText] = React.useState(null);
-
+    getCities()
+    const [state, setState] = useState({ fName: "", fApellido: "", fCorreo: "", fPassword: ""});
+    const handleChange = (value, name) => {
+        setState(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
@@ -12,29 +19,32 @@ const Register = () => {
                 <Text style={styles.textoRegister}>Registrate</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeText}
+                    onChangeText={(value,name='fName') => handleChange(value,name)}
                     placeholder="Nombre"
-                    value={text}
+                    value={state.fName}
+                    name={'fName'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeText}
+                    onChangeText={(value,name='fApellido')=> handleChange(value,name)}
                     placeholder="Apellido"
-                    value={text}
+                    value={state.fApellido}
+                    name={'fApellido'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeText}
+                    onChangeText={(value,name='fCorreo')=> handleChange(value,name)}
                     placeholder="Correo"
-                    value={text}
+                    value={state.fCorreo}
+                    name={'fCorreo'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
+                    onChangeText={(value,name='fPassword')=> handleChange(value,name)}
+                    value={state.fPassword}
                     placeholder="contraseña"
-                    keyboardType="Text"
                     secureTextEntry={true}
+                    name={'fPassword'}
                 />
                 <View style={styles.view}>
                     <TouchableOpacity
@@ -46,6 +56,7 @@ const Register = () => {
 
                     <TouchableOpacity
                         style={styles.boton2}
+                        onPress={()=>createUser(state)}
                     >
                         <Text style={styles.Text}>Registrarme</Text>
 
