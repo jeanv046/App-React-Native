@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Register from './components/register';
+import Inicio from './components/inicio';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Register/>
+      <Inicio/>
+      {/* <Register/> */}
     </View>
   );
 }
