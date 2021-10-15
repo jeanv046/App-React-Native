@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity, Text, View, Image } from "react-native";
-import {getCities, saveData, createUser} from "../funtion"
+import { ScrollView, StyleSheet, TextInput, TouchableOpacity, Text, View, Image, navigation } from "react-native";
+import {getCities, createUser} from "../funtion"
 
 
-const Register = () => {
+const Register = ({navigation}) => {
     getCities()
     const [state, setState] = useState({ fName: "", fApellido: "", fCorreo: "", fPassword: ""});
     const handleChange = (value, name) => {
@@ -12,6 +12,10 @@ const Register = () => {
             [name]: value
         }));
     };
+    const handleSubmit = () =>{
+        createUser(state)
+        setState({ fName: "", fApellido: "", fCorreo: "", fPassword: ""})
+    }
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
@@ -49,14 +53,15 @@ const Register = () => {
                 <View style={styles.view}>
                     <TouchableOpacity
                         style={styles.boton}
+                        onPress={()=> navigation.navigate('login')}
                     >
                         <Text style={styles.Text}>Iniciar Sesion</Text>
-
+ 
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={styles.boton2}
-                        onPress={()=>createUser(state)}
+                        onPress={handleSubmit}
                     >
                         <Text style={styles.Text}>Registrarme</Text>
 

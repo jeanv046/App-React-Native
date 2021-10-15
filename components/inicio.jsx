@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { ScrollView, StyleSheet, TextInput,TouchableOpacity, Text, View } from "react-native";
 
-const Inicio = () => {
+const Inicio = ({navigation}) => {
     const [state, setState] = useState({ fCorreo: "", fPassword: ""});
     const handleChange = (value, name) => {
         setState(prevState => ({
@@ -31,6 +31,7 @@ const Inicio = () => {
                 <View style={styles.view}>
                     <TouchableOpacity
                         style={styles.boton}
+                        onPress={()=> navigation.navigate('Register')}
                     >
                         <Text style={styles.Text}>Registrarme</Text>
 

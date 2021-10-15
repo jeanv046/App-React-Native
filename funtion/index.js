@@ -8,7 +8,7 @@ export const getCities = async () => {
     const citiesCol = collection(db, 'usuarios');
     const citySnapshot = await getDocs(citiesCol);
     const cityList = citySnapshot.docs.map(doc => doc.data());
-    console.log(cityList)
+    /* console.log(cityList) */
     return cityList;
 
 }
@@ -32,5 +32,10 @@ export const createUser = async (user) => {
             const errorMessage = error.message;
             // ..
         });
+}
+
+//Validacion de inicio de sesion 
+export const validation = async()=>{
+
 }
 
