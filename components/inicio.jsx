@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { ScrollView, StyleSheet, TextInput,TouchableOpacity, Text, View } from "react-native";
+import { ScrollView, StyleSheet, TextInput,TouchableOpacity, Text, View, Image } from "react-native";
 import {getCities, createUser} from "../funtion"
 import {valEspacio} from "../funtion/validators"
 

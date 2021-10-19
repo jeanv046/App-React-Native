@@ -20,10 +20,15 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.firstapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps":{"apikey": "AIzaSyCh00yuizmaaZzIzkflKSq7TVBTjW8A-3c"}
       }
+      
     },
     "web": {
       "favicon": "./assets/favicon.png"
