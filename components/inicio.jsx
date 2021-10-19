@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 import React, { useState } from "react";
 import {
     ScrollView, StyleSheet, TextInput, TouchableOpacity,
@@ -7,7 +5,7 @@ import {
 } from "react-native";
 import { getCities, createUser } from "../funtion"
 import { valEspacio } from "../funtion/validators"
->>>>>>> d9b8e5133e02d9f84ecfbd2a9b634210697f61b4
+
 
 const Inicio = ({ navigation }) => {
     getCities()
