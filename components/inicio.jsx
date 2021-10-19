@@ -1,38 +1,48 @@
 import React,{useState} from "react";
 import { ScrollView, StyleSheet, TextInput,TouchableOpacity, Text, View } from "react-native";
+import {getCities, createUser} from "../funtion"
+import {valEspacio} from "../funtion/validators"
 
 const Inicio = ({navigation}) => {
+    getCities()
     const [state, setState] = useState({ fCorreo: "", fPassword: ""});
-    const handleChange = (value, name) => {
-        setState(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const handleChange = async(value, name) => {
+        console.log(await valEspacio(value))
+        if (await valEspacio(value)){
+            setState(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+        }
     };
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
             <View style={styles.padreview}>
-                <Text style={styles.textoRegister}>Inicio de sesion</Text>
+                <Image 
+                style={styles.imageEdit}
+                source={require('../assets/icon-location-user.png')}></Image>
+                <Text style={styles.textoRegister}>Inicio de sesión</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(value, name = 'fName') => handleChange(value, name)}
+                    onChangeText={(value, name = 'fCorreo') => handleChange(value, name)}
                     placeholder="Correo"
                     value={state.fCorreo}
-                    name={'fName'}
+                    name={'fCorreo'}
                 />
                 <TextInput
                     style={styles.input}
                     onChangeText={(value, name = 'fPassword') => handleChange(value, name)}
                     placeholder="Contraseña"
                     value={state.fPassword}
+                    secureTextEntry={true}
                     name={'fPassword'}
                 />
                 <View style={styles.view}>
                     <TouchableOpacity
                         style={styles.boton}
                         onPress={()=> navigation.navigate('Register')}
-                    >
+                    > 
                         <Text style={styles.Text}>Registrarme</Text>
 
                     </TouchableOpacity>
@@ -102,6 +112,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "#ffff"
     },
+    imageEdit: {
+        width: 286,
+        height: 189,
+    }
 });
 
 export default Inicio;
