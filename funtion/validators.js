@@ -1,5 +1,4 @@
 
-
 export const validator = async (value, name) => {
     validaciones={
         'email':s
@@ -7,5 +6,6 @@ export const validator = async (value, name) => {
 }
 
 export const valEspacio = async (value) => {
-    return /^[a-zA-Z0-9]+$/.test(value);
+    
+    return /^[a-zA-Z0-9@-_]+$/.test(value);
 }
