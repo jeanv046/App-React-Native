@@ -1,14 +1,20 @@
-import React,{useState} from "react";
-import { ScrollView, StyleSheet, TextInput,TouchableOpacity, Text, View, Image } from "react-native";
-import {getCities, createUser} from "../funtion"
-import {valEspacio} from "../funtion/validators"
+<<<<<<< HEAD
 
-const Inicio = ({navigation}) => {
+import React, { useState } from "react";
+import {
+    ScrollView, StyleSheet, TextInput, TouchableOpacity,
+    Text, View, Image, Dimensions, Platform, PixelRatio,
+} from "react-native";
+import { getCities, createUser } from "../funtion"
+import { valEspacio } from "../funtion/validators"
+>>>>>>> d9b8e5133e02d9f84ecfbd2a9b634210697f61b4
+
+const Inicio = ({ navigation }) => {
     getCities()
-    const [state, setState] = useState({ fCorreo: "", fPassword: ""});
-    const handleChange = async(value, name) => {
+    const [state, setState] = useState({ fCorreo: "", fPassword: "" });
+    const handleChange = async (value, name) => {
         console.log(await valEspacio(value))
-        if (await valEspacio(value)){
+        if (await valEspacio(value)) {
             setState(prevState => ({
                 ...prevState,
                 [name]: value
@@ -19,10 +25,13 @@ const Inicio = ({navigation}) => {
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
             <View style={styles.padreview}>
-                <Image 
-                style={styles.imageEdit}
-                source={require('../assets/icon-location-user.png')}></Image>
-                <Text style={styles.textoRegister}>Inicio de sesión</Text>
+                <View style={styles.viewimage}>
+                    <Image
+                        style={styles.imageEdit}
+                        source={require('../assets/icon-location-user.png')}></Image>
+                </View>
+
+                <Text style={[styles.textoRegister, styles.xlarge]}>Inicio de sesión</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(value, name = 'fCorreo') => handleChange(value, name)}
@@ -41,17 +50,17 @@ const Inicio = ({navigation}) => {
                 <View style={styles.view}>
                     <TouchableOpacity
                         style={styles.boton}
-                        onPress={()=> navigation.navigate('Register')}
-                    > 
-                        <Text style={styles.Text}>Registrarme</Text>
+                        onPress={() => navigation.navigate('Register')}
+                    >
+                        <Text style={[styles.Text, styles.small]}>Registrarme</Text>
 
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={styles.boton2}
-                        /* onPress={()=>createUser(state)} */
+                    /* onPress={()=>createUser(state)} */
                     >
-                        <Text style={styles.Text}>Iniciar Sesion</Text>
+                        <Text style={[styles.Text, styles.small]}>Ingresar</Text>
 
                     </TouchableOpacity>
                 </View>
@@ -61,7 +70,39 @@ const Inicio = ({navigation}) => {
     );
 };
 
+const {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 320;
+
+export function normalize(size) {
+    const newSize = size * scale 
+    if (Platform.OS === 'android') {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    } else {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+    }
+}
+ 
+
 const styles = StyleSheet.create({
+    mini: {
+        fontSize: normalize(12),
+    },
+    small: {
+        fontSize: normalize(15),
+    },
+    medium: {
+        fontSize: normalize(17),
+    },
+    large: {
+        fontSize: normalize(20),
+    },
+    xlarge: {
+        fontSize: normalize(24),
+    },
     input: {
         height: 40,
         margin: 12,
@@ -73,13 +114,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
 
     },
-    textoRegister:{
+    textoRegister: {
         paddingLeft: 10,
-        fontSize: 40,
+        /* fontSize: 30, */
         color: '#ffff',
         marginBottom: 10,
         marginLeft: 17,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
     },
     padreview: {
         paddingTop: 30,
@@ -109,13 +151,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Text: {
-        fontSize: 18,
+        
         color: "#ffff"
     },
     imageEdit: {
-        width: 286,
-        height: 189,
-    }
+        width: 52,
+        height: 91,
+    },
+    viewimage: {
+        /* position: 'absolute', */
+        alignSelf: 'center',
+        marginBottom: 40
+        /* bottom: '-0%' */
+    },
 });
 
 export default Inicio;

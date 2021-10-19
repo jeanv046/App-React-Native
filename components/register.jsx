@@ -1,50 +1,53 @@
-import React, {useState} from "react";
-import { ScrollView, StyleSheet, TextInput, TouchableOpacity, Text, View, Image, navigation } from "react-native";
-import {getCities, createUser} from "../funtion"
+import React, { useState } from "react";
+import {
+    ScrollView, StyleSheet, TextInput, TouchableOpacity,
+    Text, View, Image, navigation, Dimensions, Platform, PixelRatio,
+} from "react-native";
+import { getCities, createUser } from "../funtion"
 
 
-const Register = ({navigation}) => {
+const Register = ({ navigation }) => {
     getCities()
-    const [state, setState] = useState({ fName: "", fApellido: "", fCorreo: "", fPassword: ""});
+    const [state, setState] = useState({ fName: "", fApellido: "", fCorreo: "", fPassword: "" });
     const handleChange = (value, name) => {
         setState(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
-    const handleSubmit = () =>{
+    const handleSubmit = () => {
         createUser(state)
-        setState({ fName: "", fApellido: "", fCorreo: "", fPassword: ""})
+        setState({ fName: "", fApellido: "", fCorreo: "", fPassword: "" })
     }
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
             <View style={styles.padreview}>
-                <Text style={styles.textoRegister}>Registrate</Text>
+                <Text style={[styles.textoRegister, styles.xlarge]}>Registrate</Text>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(value,name='fName') => handleChange(value,name)}
+                    onChangeText={(value, name = 'fName') => handleChange(value, name)}
                     placeholder="Nombre"
                     value={state.fName}
                     name={'fName'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={(value,name='fApellido')=> handleChange(value,name)}
+                    onChangeText={(value, name = 'fApellido') => handleChange(value, name)}
                     placeholder="Apellido"
                     value={state.fApellido}
                     name={'fApellido'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={(value,name='fCorreo')=> handleChange(value,name)}
+                    onChangeText={(value, name = 'fCorreo') => handleChange(value, name)}
                     placeholder="Correo"
                     value={state.fCorreo}
                     name={'fCorreo'}
                 />
                 <TextInput
                     style={styles.input}
-                    onChangeText={(value,name='fPassword')=> handleChange(value,name)}
+                    onChangeText={(value, name = 'fPassword') => handleChange(value, name)}
                     value={state.fPassword}
                     placeholder="contraseña"
                     secureTextEntry={true}
@@ -53,17 +56,17 @@ const Register = ({navigation}) => {
                 <View style={styles.view}>
                     <TouchableOpacity
                         style={styles.boton}
-                        onPress={()=> navigation.navigate('login')}
+                        onPress={() => navigation.navigate('login')}
                     >
-                        <Text style={styles.Text}>Iniciar Sesion</Text>
- 
+                        <Text style={[styles.Text, styles.small]}>Iniciar Sesion</Text>
+
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         style={styles.boton2}
                         onPress={handleSubmit}
                     >
-                        <Text style={styles.Text}>Registrarme</Text>
+                        <Text style={[styles.Text, styles.small]}>Siguiente</Text>
 
                     </TouchableOpacity>
                 </View>
@@ -82,7 +85,37 @@ const Register = ({navigation}) => {
     );
 };
 
+const {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 320;
+
+export function normalize(size) {
+    const newSize = size * scale
+    if (Platform.OS === 'android') {
+        return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    } else {
+        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+    }
+}
 const styles = StyleSheet.create({
+    mini: {
+        fontSize: normalize(12),
+    },
+    small: {
+        fontSize: normalize(15),
+    },
+    medium: {
+        fontSize: normalize(17),
+    },
+    large: {
+        fontSize: normalize(20),
+    },
+    xlarge: {
+        fontSize: normalize(24),
+    },
     input: {
         height: 40,
         margin: 12,
@@ -94,7 +127,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
 
     },
-    padreview: { 
+    padreview: {
         paddingTop: 30,
         paddingBottom: 30
     },
@@ -122,12 +155,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Text: {
-        fontSize: 18,
+        /* fontSize: 18, */
         color: "#ffff"
     },
     textoRegister: {
         paddingLeft: 10,
-        fontSize: 40,
+        /* fontSize: 40, */
         color: '#ffff',
         marginBottom: 10,
         marginLeft: 17,

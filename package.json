@@ -17,7 +17,11 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+<<<<<<< HEAD
     "react-native-maps": "^0.28.0",
+=======
+    "react-native-maps": "0.29.3",
+>>>>>>> d9b8e5133e02d9f84ecfbd2a9b634210697f61b4
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-svg": "^12.1.1",

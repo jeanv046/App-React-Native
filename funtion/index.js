@@ -3,6 +3,7 @@ import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firesto
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 const auth = getAuth();
 
+  
 
 export const getCities = async () => {
     const citiesCol = collection(db, 'usuarios');
