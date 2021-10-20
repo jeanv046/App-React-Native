@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     },
     imageEdit: {
         width: 52,
-        height: 91,
+        height: 90,
     },
     viewimage: {
         /* position: 'absolute', */
