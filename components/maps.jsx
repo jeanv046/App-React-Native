@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View, navigation, TextInput, Image } from "react-native";
+import { ScrollView, StyleSheet, Text, View, 
+    navigation, TextInput, Image, } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from 'expo-location';
 
@@ -40,6 +41,9 @@ const maps = ({ navigation }) => {
             </MapView>
         )
     }
+    const submitChat = () => {
+
+    }
     return (
         <View style={styles.container}>
             {location && <MapComponent />}
@@ -62,14 +66,20 @@ const maps = ({ navigation }) => {
                     </View>
                 </ScrollView>
                 <View style={styles.contentSubmit}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Escribe tu Mensaje"
-                    >
-                    </TextInput>
-                    {/* <Image
-                        style={styles.imageEdit}
-                        source={require('../assets/enviar(1).png')}></Image> */}
+                    <View style={styles.contentSubmit2}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Escribe tu Mensaje"
+                        >
+
+                        </TextInput>
+                        <Image
+                            style={styles.imageEdit}
+                            source={require('../assets/icon-submit.png')}>
+                            {/* onclick={this.submitChat} */}
+                        </Image>
+                    </View>
+
                 </View>
             </View>
         </View>
@@ -154,7 +164,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         padding: 10,
         paddingLeft: 20,
-        paddingRight: 20,
+        paddingRight: 35,
         borderRadius: 50,
         backgroundColor: '#FFFFFF',
 
@@ -162,7 +172,14 @@ const styles = StyleSheet.create({
     imageEdit: {
         width: 20,
         height: 20,
-    }
+        right: 22,
+        position: 'absolute',
+        top: 22,
+
+    },
+    contentSubmit2: {
+        display: 'flex',
+    },
 
 });
 export default maps
