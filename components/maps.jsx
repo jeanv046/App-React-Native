@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View, 
-    navigation, TextInput, Image, } from "react-native";
+import {
+    ScrollView, StyleSheet, Text, View,
+    navigation, TextInput, Image,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from 'expo-location';
 
@@ -21,6 +23,7 @@ const maps = ({ navigation }) => {
             /* console.log(JSON.stringify(location)) */
         })();
     }, []);
+
     const MapComponent = () => {
         return (
             <MapView style={styles.map}
@@ -41,9 +44,11 @@ const maps = ({ navigation }) => {
             </MapView>
         )
     }
+
     const submitChat = () => {
 
     }
+
     return (
         <View style={styles.container}>
             {location && <MapComponent />}

@@ -61,7 +61,15 @@ const Inicio = ({ navigation }) => {
                         <Text style={[styles.Text, styles.small]}>Ingresar</Text>
 
                     </TouchableOpacity>
+
                 </View>
+                <TouchableOpacity
+                    style={styles.boton2}
+                    onPress={() => navigation.navigate("maps")}
+                >
+                    <Text style={[styles.Text, styles.small]}>redirigir mapa</Text>
+
+                </TouchableOpacity>
             </View>
         </ScrollView>
 
@@ -76,14 +84,14 @@ const {
 const scale = SCREEN_WIDTH / 320;
 
 export function normalize(size) {
-    const newSize = size * scale 
+    const newSize = size * scale
     if (Platform.OS === 'android') {
-      return Math.round(PixelRatio.roundToNearestPixel(newSize))
+        return Math.round(PixelRatio.roundToNearestPixel(newSize))
     } else {
-      return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
     }
 }
- 
+
 
 const styles = StyleSheet.create({
     mini: {
@@ -149,7 +157,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Text: {
-        
+
         color: "#ffff"
     },
     imageEdit: {

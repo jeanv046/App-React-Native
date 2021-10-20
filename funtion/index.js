@@ -1,9 +1,7 @@
 import db from "../conection/firebase"
 import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firestore/lite';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
-
-  
 
 export const getCities = async () => {
     const citiesCol = collection(db, 'usuarios');
@@ -35,8 +33,19 @@ export const createUser = async (user) => {
         });
 }
 
+export const isLoggedIn = async () => {
+    await onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log(user)
+        } else {
+            console.log("Not exist session created")
+        }
+    });
+}
+
+
 //Validacion de inicio de sesion 
-export const validation = async()=>{
+export const validation = async () => {
 
 }
 
