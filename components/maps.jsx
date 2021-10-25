@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#002138',
         position: 'absolute',
         bottom: 0,
+        opacity: 0.78,
+        
     },
     contentCard2: {
         width: '100%',
