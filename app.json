@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -26,9 +24,10 @@
         "backgroundColor": "#FFFFFF"
       },
       "config": {
-        "googleMaps":{"apikey": "AIzaSyCh00yuizmaaZzIzkflKSq7TVBTjW8A-3c"}
+        "googleMaps": {
+          "apiKey": "AIzaSyCh00yuizmaaZzIzkflKSq7TVBTjW8A-3c"
+        }
       }
-      
     },
     "web": {
       "favicon": "./assets/map-pin-icon.png"
