@@ -94,79 +94,83 @@ export function normalize(size) {
 }
 
 const styles = StyleSheet.create({
-  mini: {
-    fontSize: normalize(12),
-  },
-  small: {
-    fontSize: normalize(15),
-  },
-  medium: {
-    fontSize: normalize(17),
-  },
-  large: {
-    fontSize: normalize(20),
-  },
-  xlarge: {
-    fontSize: normalize(24),
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 0,
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    borderRadius: 50,
-    backgroundColor: "#FFFFFF",
-  },
-  textoRegister: {
-    paddingLeft: 10,
-    /* fontSize: 30, */
-    color: "#ffff",
-    marginBottom: 10,
-    marginLeft: 17,
-    fontWeight: "bold",
-  },
-  padreview: {
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-  boton: {
-    width: "45%",
-    height: 50,
-    margin: 10,
-    backgroundColor: "#1C4C96",
-    alignItems: "center",
-    borderRadius: 50,
-    justifyContent: "center",
-  },
-  boton2: {
-    width: "45%",
-    height: 50,
-    margin: 10,
-    backgroundColor: "#24C912",
-    alignItems: "center",
-    borderRadius: 50,
-    justifyContent: "center",
-  },
-  view: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "center",
-  },
-  Text: {
-    color: "#ffff",
-  },
-  imageEdit: {
-    width: 52,
-    height: 91,
-  },
-  viewimage: {
-    /* position: 'absolute', */
-    alignSelf: "center",
-    marginBottom: 40,
-    /* bottom: '-0%' */
-  },
+
+    mini: {
+        fontSize: normalize(12),
+    },
+    small: {
+        fontSize: normalize(15),
+    },
+    medium: {
+        fontSize: normalize(17),
+    },
+    large: {
+        fontSize: normalize(20),
+    },
+    xlarge: {
+        fontSize: normalize(24),
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 0,
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 50,
+        backgroundColor: '#FFFFFF',
+
+    },
+    textoRegister: {
+        paddingLeft: 10,
+        /* fontSize: 30, */
+        color: '#ffff',
+        marginBottom: 10,
+        marginLeft: 17,
+        fontWeight: 'bold',
+
+    },
+    padreview: {
+        paddingTop: 30,
+        paddingBottom: 30,
+    },
+    boton: {
+        width: '45%',
+        height: 50,
+        margin: 10,
+        backgroundColor: "#1C4C96",
+        alignItems: "center",
+        borderRadius: 50,
+        justifyContent: "center",
+    },
+    boton2: {
+        width: '45%',
+        height: 50,
+        margin: 10,
+        backgroundColor: "#24C912",
+        alignItems: "center",
+        borderRadius: 50,
+        justifyContent: "center",
+    },
+    view: {
+        flexDirection: "row",
+        width: '100%',
+        justifyContent: 'center',
+    },
+    Text: {
+
+        color: "#ffff"
+    },
+    imageEdit: {
+        width: 52,
+        height: 90,
+    },
+    viewimage: {
+        /* position: 'absolute', */
+        alignSelf: 'center',
+        marginBottom: 40
+        /* bottom: '-0%' */
+    }
 });
 
 export default Inicio;

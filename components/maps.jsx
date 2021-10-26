@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  navigation,
   TextInput,
   Image,
 } from "react-native";
@@ -38,14 +39,22 @@ const maps = ({ navigation }) => {
             longitudeDelta: 0.0121,
           }
         }
-      >
+      >  
         <Marker
-          title="My Marker"
+          title="Jean Vega"
+          description="Soy jean y me gusta el trago"
           coordinate={{
             latitude: Number(JSON.stringify(location.coords.latitude)),
             longitude: Number(JSON.stringify(location.coords.longitude)),
           }}
-        />
+        >
+            <View style={styles.stroke}>
+              <Image
+                style={styles.imageEdit2}
+                source={require("../assets/maps-icon-pin.png")}
+              ></Image>
+            </View> 
+        </Marker>
       </MapView>
     );
   };
@@ -120,6 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#002138",
     position: "absolute",
     bottom: 0,
+    opacity: 0.78,
   },
   contentCard2: {
     width: "100%",
@@ -184,6 +194,13 @@ const styles = StyleSheet.create({
   },
   contentSubmit2: {
     display: "flex",
+  },
+  stroke: {
+    zIndex: 1,
+  },
+  imageEdit2: {
+      width: 50,
+      height: 50,
   },
 });
 export default maps;
