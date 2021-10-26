@@ -1,99 +1,100 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
-    ScrollView, StyleSheet, TextInput, TouchableOpacity,
-    Text, View, Image, Dimensions, Platform, PixelRatio,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  Platform,
+  PixelRatio,
 } from "react-native";
-import { getCities, createUser } from "../funtion"
-import { valEspacio } from "../funtion/validators"
-
+import { AuthContext } from "../navigation/AuthProvider";
 
 const Inicio = ({ navigation }) => {
-    getCities()
-    const [state, setState] = useState({ fCorreo: "", fPassword: "" });
-    const handleChange = async (value, name) => {
-        console.log(await valEspacio(value))
-        if (await valEspacio(value)) {
-            setState(prevState => ({
-                ...prevState,
-                [name]: value
-            }));
-        }
-    };
+  const [state, setState] = useState({ fCorreo: "", fPassword: "" });
+  const { fCorreo, fPassword } = state;
 
-    return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
-            <View style={styles.padreview}>
-                <View style={styles.viewimage}>
-                    <Image
-                        style={styles.imageEdit}
-                        source={require('../assets/icon-location-user.png')}></Image>
-                </View>
+  const handleChange = async (value, name) => {
+    setState({
+      ...state,
+      [name]: value,
+    });
+  };
 
-                <Text style={[styles.textoRegister, styles.xlarge]}>Inicio de sesión</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(value, name = 'fCorreo') => handleChange(value, name)}
-                    placeholder="Correo"
-                    value={state.fCorreo}
-                    name={'fCorreo'}
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(value, name = 'fPassword') => handleChange(value, name)}
-                    placeholder="Contraseña"
-                    value={state.fPassword}
-                    secureTextEntry={true}
-                    name={'fPassword'}
-                />
-                <View style={styles.view}>
-                    <TouchableOpacity
-                        style={styles.boton}
-                        onPress={() => navigation.navigate('Register')}
-                    >
-                        <Text style={[styles.Text, styles.small]}>Registrarme</Text>
+  const { login } = useContext(AuthContext);
 
-                    </TouchableOpacity>
+  return (
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+    >
+      <View style={styles.padreview}>
+        <View style={styles.viewimage}>
+          <Image
+            style={styles.imageEdit}
+            source={require("../assets/icon-location-user.png")}
+          ></Image>
+        </View>
 
-                    <TouchableOpacity
-                        style={styles.boton2}
-                    /* onPress={()=>createUser(state)} */
-                    >
-                        <Text style={[styles.Text, styles.small]}>Ingresar</Text>
+        <Text style={[styles.textoRegister, styles.xlarge]}>
+          Inicio de sesión
+        </Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={(value, name = "fCorreo") => handleChange(value, name)}
+          placeholder="Correo"
+          value={fCorreo}
+          name={"fCorreo"}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={(value, name = "fPassword") =>
+            handleChange(value, name)
+          }
+          placeholder="Contraseña"
+          value={fPassword}
+          secureTextEntry={true}
+          name={"fPassword"}
+        />
+        <View style={styles.view}>
+          <TouchableOpacity
+            style={styles.boton}
+            onPress={() => navigation.navigate("Register")}
+          >
+            <Text style={[styles.Text, styles.small]}>Registrarme</Text>
+          </TouchableOpacity>
 
-                    </TouchableOpacity>
-
-                </View>
-                <TouchableOpacity
-                    style={styles.boton2}
-                    onPress={() => navigation.navigate("maps")}
-                >
-                    <Text style={[styles.Text, styles.small]}>redirigir mapa</Text>
-
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
-
-    );
+          <TouchableOpacity
+            style={styles.boton2}
+            onPress={() => {
+              login(fCorreo, fPassword);
+            }}
+          >
+            <Text style={[styles.Text, styles.small]}>Ingresar</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
 };
 
-const {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
-} = Dimensions.get('window');
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const scale = SCREEN_WIDTH / 320;
 
 export function normalize(size) {
-    const newSize = size * scale
-    if (Platform.OS === 'android') {
-        return Math.round(PixelRatio.roundToNearestPixel(newSize))
-    } else {
-        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-    }
+  const newSize = size * scale;
+  if (Platform.OS === "android") {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
+  }
 }
 
-
 const styles = StyleSheet.create({
+
     mini: {
         fontSize: normalize(12),
     },
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 40
         /* bottom: '-0%' */
-    },
+    }
 });
 
 export default Inicio;
