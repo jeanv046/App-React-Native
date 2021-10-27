@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import firebase from "../firebase";
+const db = firebase.firestore();
 
 export const AuthContext = createContext();
 
@@ -11,20 +12,31 @@ export const AuthProvider = ({ children }) => {
         user,
         setUser,
         login: async (email, password) => {
-          try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
+          await firebase
+            .auth()
+            .signInWithEmailAndPassword(email, password)
+            .catch((err) => console.log(err));
         },
-        register: async (email, password) => {
-          try {
-            await firebase
-              .auth()
-              .createUserWithEmailAndPassword(email, password);
-          } catch (e) {
-            console.log(e);
-          }
+        register: async (email, password, firstName, lastName) => {
+          await firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((userData) => {
+              var user = userData.user;
+              user
+                .updateProfile({
+                  displayName: `${firstName} ${lastName}`,
+                })
+                .then(() => {
+                  db.collection("usuarios").doc(userData.user.uid).set({
+                    firstName,
+                    lastName,
+                    uid: userData.user.uid,
+                    createdAt: new Date(),
+                  });
+                });
+            })
+            .catch((err) => console.log(err));
         },
         logout: async () => {
           try {

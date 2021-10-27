@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import maps from "../components/maps";
+import maps from "../components/maps/";
 import Inicio from "../components/inicio";
 import Register from "../components/register";
 import { Ionicons } from "@expo/vector-icons";

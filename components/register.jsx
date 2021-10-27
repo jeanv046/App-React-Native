@@ -32,7 +32,7 @@ const Register = ({ navigation }) => {
     }));
   };
   const handleSubmit = () => {
-    register(state.fCorreo, state.fPassword);
+    register(state.fCorreo, state.fPassword, state.fName, state.fApellido);
     setState({ fName: "", fApellido: "", fCorreo: "", fPassword: "" });
   };
   return (
