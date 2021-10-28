@@ -1,19 +1,23 @@
 import firebase from "./index";
 const db = firebase.firestore();
 
-export const readUsers = async () => {
+export const readUsers = async (setUsers) => {
+  const user = await firebase.auth().currentUser
   const data = await db
     .collection("usuarios")
+    .where('uid', '!=', user.uid)
     .get()
     .then((snapshot) => {
-      return snapshot.forEach((doc) => doc.data());
+      let data = []
+      snapshot.forEach((doc) => {
+        data.push(doc.data())
+      });
+      setUsers(data)
     });
-  console.log("esto es data", data);
 };
 
 export const saveOrUpdateCoordinate = async (coords) => {
   const user = await firebase.auth().currentUser;
-  console.log(user.uid);
   const res = await db
     .collection("usuarios")
     .doc(user.uid)
@@ -27,3 +31,5 @@ export const saveOrUpdateCoordinate = async (coords) => {
       console.log(err);
     });
 };
+
+
