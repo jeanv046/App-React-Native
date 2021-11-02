@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { View, StyleSheet, LogBox } from "react-native";
-import {AuthContext} from "../../navigation/AuthProvider"
+import { AuthContext } from "../../navigation/AuthProvider";
 
 const MapComponent = ({ myLocation, users }) => {
-  const {user}=useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   return (
     <MapView
       style={styles.map}
@@ -24,18 +24,20 @@ const MapComponent = ({ myLocation, users }) => {
         pinColor={"blue"}
       ></Marker>
 
-      {users.map((user) => (
-        <Marker
-          key={user.uid}
-          title={`${user.firstName} ${user.lastName}`}
-          coordinate={{
-            latitude: Number(JSON.stringify(user.coordinates.latitude)),
-            longitude: Number(JSON.stringify(user.coordinates.longitude)),
-          }}
-          onPress={() =>console.log(user.uid)}
-          
-        ></Marker>
-      ))}
+      {users.map(
+        (user) =>
+          user.coordinates && (
+            <Marker
+              key={user.uid}
+              title={`${user.firstName} ${user.lastName}`}
+              coordinate={{
+                latitude: Number(JSON.stringify(user.coordinates.latitude)),
+                longitude: Number(JSON.stringify(user.coordinates.longitude)),
+              }}
+              onPress={() => console.log(user.uid)}
+            ></Marker>
+          )
+      )}
     </MapView>
   );
 };
