@@ -1,6 +1,13 @@
-import { View, StyleSheet, LogBox, Image, ScrollView,Text,TextInput} from "react-native";
+import {
+  View,
+  StyleSheet,
+  LogBox,
+  Image,
+  ScrollView,
+  Text,
+  TextInput,
+} from "react-native";
 import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
 import React, { useState, useEffect, useContext } from "react";
 import { readUsers, saveOrUpdateCoordinate } from "../../firebase/funDatabase";
 
@@ -17,18 +24,15 @@ const maps = ({ navigation }) => {
   useEffect(() => {
     async function getPermissionsLocation() {
       let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log(status);
       if (status === "granted") setStatusLocation(true);
       let location = await Location.getCurrentPositionAsync({});
       setMyLocation(location);
       await saveOrUpdateCoordinate(location.coords);
     }
     getPermissionsLocation();
-    getOtherUsers();
-  }, []);
-
-  async function getOtherUsers() {
     readUsers(setUsers);
-  }
+  }, []);
 
   LogBox.ignoreLogs(["Setting a timer"]);
   return (
@@ -171,8 +175,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   imageEdit2: {
-      width: 50,
-      height: 50,
+    width: 50,
+    height: 50,
   },
 });
 

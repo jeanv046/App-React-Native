@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
                     lastName,
                     uid: userData.user.uid,
                     createdAt: new Date(),
+                    isOnline: true,
                   });
                 });
             })
