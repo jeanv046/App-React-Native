@@ -24,7 +24,6 @@ const Chat = ({ route, navigation }) => {
       title: `${userChat.firstName} ${userChat.lastName}`,
     });
 
-    console.log(user.uid, userChat.uid);
     db.collection("chat")
       .where("user_uid_1", "in", [user.uid, userChat.uid])
       .orderBy("createdAt", "desc")
@@ -67,8 +66,6 @@ const Chat = ({ route, navigation }) => {
         });
     }
   };
-  console.log(user.uid, userChat.uid);
-  console.log(messages);
   return (
     <View style={styles.cards}>
       <ScrollView contentContainerStyle={styles.contentCard2}>

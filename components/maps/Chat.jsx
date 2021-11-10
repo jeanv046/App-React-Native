@@ -15,7 +15,6 @@ const Chat = ({ setOpenChat }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
-  console.log(user.uid);
   const onHandleSubmit = () => {
     if (message.trim() !== "") {
       const msgObj = {
