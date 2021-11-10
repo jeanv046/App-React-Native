@@ -19,11 +19,7 @@ const Chat = ({ route, navigation }) => {
   const { user } = useContext(AuthContext);
   const { userChat } = route.params;
 
-  useEffect(() => {
-    navigation.setOptions({
-      title: `${userChat.firstName} ${userChat.lastName}`,
-    });
-
+  const getChatRealTime = () => {
     db.collection("chat")
       .where("user_uid_1", "in", [user.uid, userChat.uid])
       .orderBy("createdAt", "asc")
@@ -42,6 +38,13 @@ const Chat = ({ route, navigation }) => {
         });
         setMessages(conversations);
       });
+  };
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: `${userChat.firstName} ${userChat.lastName}`,
+    });
+    getChatRealTime();
   }, []);
 
   const onHandleSubmit = () => {
