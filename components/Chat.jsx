@@ -26,7 +26,7 @@ const Chat = ({ route, navigation }) => {
 
     db.collection("chat")
       .where("user_uid_1", "in", [user.uid, userChat.uid])
-      .orderBy("createdAt", "desc")
+      .orderBy("createdAt", "asc")
       .onSnapshot((querySnapShot) => {
         const conversations = [];
 
