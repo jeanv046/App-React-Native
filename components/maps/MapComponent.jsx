@@ -3,7 +3,7 @@ import MapView, { Marker } from "react-native-maps";
 import { View, StyleSheet, LogBox } from "react-native";
 import { AuthContext } from "../../navigation/AuthProvider";
 
-const MapComponent = ({ myLocation, users, setOpenChat }) => {
+const MapComponent = ({ myLocation, users, setOpenChat, navigation }) => {
   const { user } = useContext(AuthContext);
   return (
     <MapView
@@ -35,7 +35,9 @@ const MapComponent = ({ myLocation, users, setOpenChat }) => {
                 longitude: Number(JSON.stringify(user.coordinates.longitude)),
               }}
               onPress={() => {
-                setOpenChat(true);
+                navigation.navigate("chat", {
+                  userChat: user,
+                });
               }}
             ></Marker>
           )
