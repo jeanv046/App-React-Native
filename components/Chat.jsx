@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import { AuthContext } from "../navigation/AuthProvider";
 import firebase from "../firebase";
@@ -69,45 +70,49 @@ const Chat = ({ route, navigation }) => {
         });
     }
   };
+  const image = {uri: "https://www.wallpaperuse.com/wallp/11-118588_m.jpg"};
+
   return (
     <View style={styles.cards}>
-      <ScrollView contentContainerStyle={styles.contentCard2}>
-        {messages.map((m, key) => {
-          return (
-            <Fragment key={key}>
-              {m.user_uid_1 === user.uid ? (
-                <View style={styles.contenEmisor}>
-                  <View style={styles.CheckEmisor}>
-                    <Text style={styles.textoChat}>{m.message}</Text>
+      <ImageBackground source={image} resizeMode="cover" style={styles.imageBackground} >
+        <ScrollView contentContainerStyle={styles.contentCard2}>
+          {messages.map((m, key) => {
+            return (
+              <Fragment key={key}>
+                {m.user_uid_1 === user.uid ? (
+                  <View style={styles.contenEmisor}>
+                    <View style={styles.CheckEmisor}>
+                      <Text style={styles.textoChat}>{m.message}</Text>
+                    </View>
                   </View>
-                </View>
-              ) : (
-                <View style={styles.contenReceptor}>
-                  <View style={styles.ChekReceptor}>
-                    <Text style={styles.textoChat}>{m.message}</Text>
+                ) : (
+                  <View style={styles.contenReceptor}>
+                    <View style={styles.ChekReceptor}>
+                      <Text style={styles.textoChat}>{m.message}</Text>
+                    </View>
                   </View>
-                </View>
-              )}
-            </Fragment>
-          );
-        })}
-      </ScrollView>
-      <View style={styles.contentSubmit}>
-        <View style={styles.contentSubmit2}>
-          <TextInput
-            style={styles.input}
-            placeholder="Escribe tu Mensaje"
-            value={message}
-            onChangeText={(value) => setMessage(value)}
-          ></TextInput>
-          <TouchableOpacity style={styles.imageEdit} onPress={onHandleSubmit}>
-            <Image
-              style={styles.imageEditt}
-              source={require("../assets/icon-submit.png")}
-            />
-          </TouchableOpacity>
+                )}
+              </Fragment>
+            );
+          })}
+        </ScrollView>
+        <View style={styles.contentSubmit}>
+          <View style={styles.contentSubmit2}>
+            <TextInput
+              style={styles.input}
+              placeholder="Escribe tu Mensaje"
+              value={message}
+              onChangeText={(value) => setMessage(value)}
+            ></TextInput>
+            <TouchableOpacity style={styles.imageEdit} onPress={onHandleSubmit}>
+              <Image
+                style={styles.imageEdit2}
+                source={require("../assets/icon-submit.png")}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -128,22 +133,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cards: {
-    width: "95%",
-    height: "98%",
-    padding: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 20,
-    borderRadius: 16,
-    backgroundColor: "#002138",
+    width: "100%",
+    height: "100%",
     position: "absolute",
     bottom: 0,
-    opacity: 0.78,
+  },
+  imageBackground:{
+    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    
   },
   contentCard2: {
     width: "100%",
     display: "flex",
     alignItems: "flex-end",
+    paddingTop:20,
     /* backgroundColor: 'black' */
   },
   contenReceptor: {
@@ -154,13 +159,14 @@ const styles = StyleSheet.create({
   },
   contenEmisor: {
     width: "100%",
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     display: "flex",
     alignItems: "flex-end",
   },
   ChekReceptor: {
     maxWidth: "80%",
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     paddingTop: 10,
     paddingBottom: 10,
@@ -183,6 +189,7 @@ const styles = StyleSheet.create({
   contentSubmit: {
     width: "100%",
     position: "relative",
+    paddingBottom: 5,
   },
   input: {
     height: 40,
@@ -202,7 +209,7 @@ const styles = StyleSheet.create({
     top: 22,
   },
 
-  imageEditt: {
+  imageEdit2: {
     width: 20,
     height: 20,
   },
@@ -212,10 +219,6 @@ const styles = StyleSheet.create({
   },
   stroke: {
     zIndex: 1,
-  },
-  imageEdit2: {
-    width: 50,
-    height: 50,
   },
 });
 

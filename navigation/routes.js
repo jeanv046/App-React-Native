@@ -64,7 +64,7 @@ const AppStack = () => {
             <Ionicons
               name="exit"
               size={24}
-              color="black"
+              color="white"
               onPress={() => logout()}
             />
           ),
@@ -74,11 +74,15 @@ const AppStack = () => {
         name="chat"
         component={Chat}
         options={{
+          headerStyle: {
+            backgroundColor: '#002138',
+          },
+          headerTintColor: '#fff',
           headerRight: () => (
             <Ionicons
               name="exit"
               size={24}
-              color="black"
+              color="white"
               onPress={() => logout()}
             />
           ),
