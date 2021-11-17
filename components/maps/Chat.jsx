@@ -8,7 +8,6 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import Swal from "sweetalert2";
 import { AuthContext } from "../../navigation/AuthProvider";
 
 const Chat = ({ setOpenChat }) => {
