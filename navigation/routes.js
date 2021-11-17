@@ -9,6 +9,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { AuthContext } from "./AuthProvider";
 /* Firebase */
 import firebase from "../firebase";
+import Chat from "../components/Chat";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,10 +64,29 @@ const AppStack = () => {
             <Ionicons
               name="exit"
               size={24}
-              color="black"
+              color="white"
               onPress={() => logout()}
             />
           ),
+        }}
+      />
+      <Stack.Screen
+        name="chat"
+        component={Chat}
+        options={{
+          headerStyle: {
+            backgroundColor: '#002138',
+          },
+          headerTintColor: '#fff',
+          headerRight: () => (
+            <Ionicons
+              name="exit"
+              size={24}
+              color="white"
+              onPress={() => logout()}
+            />
+          ),
+          title: "Chat",
         }}
       />
     </Stack.Navigator>

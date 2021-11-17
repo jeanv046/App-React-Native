@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   StyleSheet,
-  LogBox,
   Image,
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../navigation/AuthProvider";
 
 const Chat = ({ setOpenChat }) => {
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const { user } = useContext(AuthContext);
+  const onHandleSubmit = () => {
+    if (message.trim() !== "") {
+      const msgObj = {
+        user_uid_1: user.uid,
+        user_uid_1: user.uid,
+      };
+    }
+  };
+
   return (
     <>
       <View style={styles.cards}>
@@ -38,13 +52,15 @@ const Chat = ({ setOpenChat }) => {
             <TextInput
               style={styles.input}
               placeholder="Escribe tu Mensaje"
+              value={message}
+              onChangeText={(value) => setMessage(value)}
             ></TextInput>
-            <Image
-              style={styles.imageEdit}
-              source={require("../../assets/icon-submit.png")}
-            >
-              {/* onclick={this.submitChat} */}
-            </Image>
+            <TouchableOpacity style={styles.imageEdit} onPress={onHandleSubmit}>
+              <Image
+                style={styles.imageEditt}
+                source={require("../../assets/icon-submit.png")}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -141,6 +157,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 22,
   },
+
+  imageEditt: {
+    width: 20,
+    height: 20,
+  },
+
   contentSubmit2: {
     display: "flex",
   },
