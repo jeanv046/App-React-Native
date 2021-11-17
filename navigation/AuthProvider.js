@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 import firebase from "../firebase";
+import {Alert} from "react-native";
+
 const db = firebase.firestore();
 
 export const AuthContext = createContext();
@@ -15,7 +17,7 @@ export const AuthProvider = ({ children }) => {
           await firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
-            .catch((err) => console.log(err));
+            .catch((err) => Alert.alert('Error inicio de sesion', 'Usuario o contraseña es invalido'));
         },
         register: async (email, password, firstName, lastName) => {
           await firebase

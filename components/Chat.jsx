@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useRef, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -17,6 +17,8 @@ const db = firebase.firestore();
 const Chat = ({ route, navigation }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const scrollViewRef = useRef();
+  
   const { user } = useContext(AuthContext);
   const { userChat } = route.params;
 
@@ -71,16 +73,20 @@ const Chat = ({ route, navigation }) => {
     }
   };
   const image = { uri: "https://www.wallpaperuse.com/wallp/11-118588_m.jpg" };
+  /* const refv = React.createRef<ScrollView>();
+  refv.current.scrollToEnd(); */
 
   return (
-    
       <View style={styles.cards}>
         <ImageBackground
           source={image}
           resizeMode="cover"
           style={styles.imageBackground}
         >
-          <ScrollView contentContainerStyle={styles.contentCard2}>
+          <ScrollView contentContainerStyle={styles.contentCard2}
+            onContentSizeChange={()=>scrollViewRef.current.scrollToEnd({animated:false})}
+            ref={scrollViewRef}
+          >
             {messages.map((m, key) => {
               return (
                 <Fragment key={key}>
@@ -155,9 +161,7 @@ const styles = StyleSheet.create({
   },
   contentCard2: {
     width: "100%",
-    display: "flex",
     paddingTop: 10,
-    flex: 1,
   },
   contenReceptor: {
     width: "100%",
