@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { View, StyleSheet, LogBox } from "react-native";
+import { StyleSheet } from "react-native";
 import { AuthContext } from "../../navigation/AuthProvider";
 
 const MapComponent = ({ myLocation, users, setOpenChat, navigation }) => {

@@ -64,7 +64,7 @@ const AppStack = () => {
             <Ionicons
               name="exit"
               size={24}
-              color="white"
+              color="black"
               onPress={() => logout()}
             />
           ),
