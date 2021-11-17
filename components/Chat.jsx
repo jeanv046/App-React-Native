@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { AuthContext } from "../navigation/AuthProvider";
 import {ScrollView} from "native-base";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import firebase from "../firebase";
 
 const db = firebase.firestore();
@@ -74,7 +73,7 @@ const Chat = ({ route, navigation }) => {
   const image = { uri: "https://www.wallpaperuse.com/wallp/11-118588_m.jpg" };
 
   return (
-    <KeyboardAwareScrollView style={styles.containerGeneral}>
+    
       <View style={styles.cards}>
         <ImageBackground
           source={image}
@@ -124,7 +123,6 @@ const Chat = ({ route, navigation }) => {
           </View>
         </ImageBackground>
       </View>
-    </KeyboardAwareScrollView>
       
   );
 };
@@ -139,13 +137,6 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-  },
-  containerGeneral:{
-    display: "flex",
-    flex: 1,
-    height: "100%",
-    borderRadius: 20,
-    backgroundColor: "#fff"
   },
   paragraph: {
     fontSize: 18,
